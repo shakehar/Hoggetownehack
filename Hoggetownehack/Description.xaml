@@ -1,0 +1,55 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Hoggetownehack.Description"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="submit report" Margin="9,-20,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <StackPanel x:Name="stackpanel">          
+                <TextBlock x:Name="StatusTextBlock" FontSize="30"/>
+                <TextBlock x:Name="LatitudeTextBlock" Text="Lat: " FontSize="30"/>
+                <TextBlock x:Name="LongitudeTextBlock" Text="Lon: " FontSize="30"/>
+                <TextBlock x:Name="TypeOfReportBlock" Text="Incident Type" FontSize="25" Margin="0,10,0,0" Visibility="Collapsed"/>
+                <toolkit:ListPicker x:Name="CategoryDropDown" Visibility="Collapsed">
+                    <toolkit:ListPickerItem x:Name="damage" Content="Damage"/>
+                    <toolkit:ListPickerItem x:Name="littering" Content="Littering"/>
+                    <toolkit:ListPickerItem x:Name="utility" Content="Utility Outage"/>
+                    <toolkit:ListPickerItem x:Name="misinfo" Content="MisInfomation"/>
+                    <toolkit:ListPickerItem x:Name="other" Content="Other"/>
+                </toolkit:ListPicker>
+                <TextBlock x:Name="severity" Text="Severity" Visibility="Collapsed"/>
+                <Slider x:Name="SeveritySlider" Minimum="1" Maximum="3" SmallChange="1" LargeChange="2" ValueChanged="SeveritySlider_ValueChanged" Visibility="Collapsed"/>
+                <TextBlock x:Name="impact" Text="Impacts" Visibility="Collapsed"/>
+                <Slider x:Name="ImpactSlider" Minimum="5" Maximum="100" SmallChange="50" LargeChange="50" ValueChanged="ImpactSlider_ValueChanged" Visibility="Collapsed"/>
+                <toolkit:PhoneTextBox x:Name="desc" Hint="Other details" Visibility="Collapsed"/>
+                <Button x:Name="SubmitButton" Content="UPLOAD" Width="200" FontSize="30" FontWeight="Bold" Visibility="Collapsed" Click="SubmitButton_Click"/>
+                <TextBlock x:Name="confirmation" Foreground="Red" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>
