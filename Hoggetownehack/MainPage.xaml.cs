@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
+﻿using Microsoft.Devices;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using Hoggetownehack.Resources;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Devices;
-using System.IO.IsolatedStorage;
+using System;
 using System.IO;
+using System.IO.IsolatedStorage;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Navigation;
 
 namespace Hoggetownehack
 {
@@ -27,13 +22,24 @@ namespace Hoggetownehack
 
         }
 
+
+        private void RotateCamera()
+        {
+
+            if (cam != null)
+            {
+
+                viewfinderBrush.RelativeTransform =
+                    new CompositeTransform() { CenterX = 0.5, CenterY = 0.5,ScaleY=1.5, Rotation = 90 };
+            }
+        }
+
         //Code for initialization, capture completed, image availability events; also setting the source for the viewfinder.
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
 
             // Check to see if the camera is available on the phone.
-            if ((PhotoCamera.IsCameraTypeSupported(CameraType.Primary) == true) ||
-                 (PhotoCamera.IsCameraTypeSupported(CameraType.FrontFacing) == true))
+            if ((PhotoCamera.IsCameraTypeSupported(CameraType.Primary) == true))
             {
 
                 // Otherwise, use standard camera on back of phone.
@@ -54,6 +60,8 @@ namespace Hoggetownehack
 
                 //Set the VideoBrush source to the camera.
                 viewfinderBrush.SetSource(cam);
+
+                RotateCamera();
             }
             else
             {
@@ -115,7 +123,7 @@ namespace Hoggetownehack
                 }
                 finally
                 {
-                   // NavigationService.Navigate(new Uri("/Preview.xaml?img=" + savedCounter + ".jpg", UriKind.Relative));
+                    // NavigationService.Navigate(new Uri("/Preview.xaml?img=" + savedCounter + ".jpg", UriKind.Relative));
                 }
             }
         }

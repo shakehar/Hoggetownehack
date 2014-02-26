@@ -10,35 +10,24 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Landscape" Orientation="LandscapeLeft"
+    SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
-
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <!--LayoutRoot is the root grid where all page content is placed-->
+    
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="640" />
-            <ColumnDefinition Width="160" />
-        </Grid.ColumnDefinitions>
-
-        <Canvas x:Name="viewfinderCanvas" Width="640" Height="480" 
-                   HorizontalAlignment="Left" >
-
-            <!--Camera viewfinder -->
-            <Canvas.Background>
-                <VideoBrush x:Name="viewfinderBrush" />
-            </Canvas.Background>
-        </Canvas>
-
         <!--Button StackPanel to the right of viewfinder>-->
-        <StackPanel Grid.Column="1" >
-            <Button x:Name="ShutterButton" Content="SH" Click="ShutterButton_Click" FontSize="26" FontWeight="ExtraBold" Height="75" />
-            <Button x:Name="SaveButton" Content="USE" Click="SaveButton_Click" FontSize="26" FontWeight="ExtraBold" Height="75" />
+        <StackPanel >
+            <Canvas x:Name="viewfinderCanvas" Height="640">
+                <!--Camera viewfinder -->
+                <Canvas.Background>
+                    <VideoBrush x:Name="viewfinderBrush" Stretch="None" AlignmentX="Center" AlignmentY="Center" />
+                </Canvas.Background>
+            </Canvas>
+            <Button x:Name="SaveButton" Content="USE" Click="SaveButton_Click" FontSize="26" FontWeight="ExtraBold" />
+            <Button x:Name="ShutterButton" Content="SHOOT" Click="ShutterButton_Click" FontSize="26" FontWeight="ExtraBold"  />           
         </StackPanel>
 
         <!--Used for debugging >-->
-        <TextBlock Height="40" HorizontalAlignment="Left" Margin="8,428,0,0" Name="txtDebug" VerticalAlignment="Top" Width="626" FontSize="24" FontWeight="ExtraBold" />
+        <TextBlock Height="40" HorizontalAlignment="Left" Margin="8,428,0,0" Name="txtDebug" VerticalAlignment="Top" Width="450" FontSize="24" FontWeight="ExtraBold" />
     </Grid>
 
 </phone:PhoneApplicationPage>
