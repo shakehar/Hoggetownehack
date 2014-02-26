@@ -65,10 +65,9 @@ namespace Hoggetownehack
         } 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            byte[] data=null;
-            
+            byte[] data=null;          
 
-            if (NavigationContext.QueryString.TryGetValue("img", out _img));
+            NavigationContext.QueryString.TryGetValue("img", out _img);
 
             using (IsolatedStorageFile isStore = IsolatedStorageFile.GetUserStoreForApplication())
             {  
@@ -89,6 +88,13 @@ namespace Hoggetownehack
             ImagePreview.Height = 300;
             ImagePreview.Width = 400;
             ImagePreview.Source = bi;
+
+
+            RotateTransform MyTransform = new RotateTransform();
+            MyTransform.Angle = 90;
+            ImagePreview.RenderTransform = MyTransform;
+
+            ImagePreview.RenderTransformOrigin = new Point(0.5, 0.5);
         }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
